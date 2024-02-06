@@ -15,7 +15,9 @@ const searchParams = new URLSearchParams({
   image_type: 'photo',
   orientation: 'horizontal',
   safesearch: true,
+  q: '',
 });
+
 const gallery = new SimpleLightbox('.gallery-link');
 
 form.addEventListener('submit', e => {
@@ -25,6 +27,7 @@ form.addEventListener('submit', e => {
 });
 
 function pixabayRequest() {
+  searchParams.set('q', input.value);
   return fetch(`https://pixabay.com/api/?${searchParams}`).then(response => {
     if (!response.ok) {
       throw new Error(response.status);
@@ -35,7 +38,6 @@ function pixabayRequest() {
 
 function processingPixabayRequest() {
   galleryContainer.innerHTML = loaderMarkup;
-  searchParams.set('q', input.value);
   pixabayRequest()
     .then(images => {
       if (images.hits.length) {
