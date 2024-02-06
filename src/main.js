@@ -9,8 +9,7 @@ const form = document.querySelector('.form');
 const input = document.querySelector('.form-input');
 const galleryContainer = document.querySelector('.gallery-container');
 const loader = document.querySelector('.loader');
-const loaderTextContent =
-  '<p class="loader">Loading images, please wait...</p>';
+const loaderMarkup = '<p class="loader">Loading images, please wait...</p>';
 const searchParams = new URLSearchParams({
   key: '42207525-2f984868f7881b9b68563ca8c',
   image_type: 'photo',
@@ -35,7 +34,7 @@ function pixabayRequest() {
 }
 
 function processingPixabayRequest() {
-  galleryContainer.innerHTML = loaderTextContent;
+  galleryContainer.innerHTML = loaderMarkup;
   searchParams.set('q', input.value);
   pixabayRequest()
     .then(images => {
