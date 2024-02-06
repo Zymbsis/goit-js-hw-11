@@ -18,6 +18,22 @@
     <title>Document</title>
   </head>
   <body>
-    <script type="module" src="./js/gallery.js"></script>
+    <header></header>
+    <main>
+      <div class="container">
+        <form class="form">
+          <input
+            class="form-input"
+            type="text"
+            name="text"
+            required
+            placeholder="Search images..."
+          /><button class="form-button" type="submit">Search</button>
+        </form>
+        <p class="loader">Loading images, please wait...</p>
+        <ul class="gallery-container"></ul>
+      </div>
+    </main>
+    <script type="module" src="/main.js"></script>
   </body>
 </html>
