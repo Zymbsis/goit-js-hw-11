@@ -41,7 +41,7 @@ function processingPixabayRequest() {
   pixabayRequest()
     .then(images => {
       if (images.hits.length) {
-        galleryContainer.innerHTML = createMarkup(images.hits);
+        createMarkup(images.hits);
         gallery.refresh();
       } else {
         createPopUp(
@@ -53,12 +53,13 @@ function processingPixabayRequest() {
 }
 
 function createMarkup(arr) {
-  return arr
+  const markup = arr
     .map(
       item =>
         `<li class='gallery-item'><a class='gallery-link' href=${item.largeImageURL}><img class='gallery-img' src=${item.webformatURL} width='360' height='200' alt=${item.tags}><span class="img-loader"></span></a><ul class='desc-wrapper'><li class='desc-text'><h3>Likes</h3><p>${item.likes}</p></li><li class='desc-text'><h3>Views</h3><p>${item.views}</p></li><li class='desc-text'><h3>Comments</h3><p>${item.comments}</p></li><li class='desc-text'><h3>Downloads</h3><p>${item.downloads}</p></li></ul></li>`
     )
     .join('');
+  galleryContainer.innerHTML = markup;
 }
 
 function createPopUp(message) {
@@ -85,7 +86,6 @@ function createPopUp(message) {
     ],
     onOpening() {
       galleryContainer.innerHTML = '';
-
       input.addEventListener('input', () => {
         const toast = document.querySelector('.my-iziToast');
         iziToast.hide(
