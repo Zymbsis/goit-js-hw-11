@@ -123,7 +123,7 @@ textarea {
   display: block;
   width: 15px;
   height: 15px;
-  background: #808080;
+  background: rgba(108, 140, 255, 0.5);
   position: absolute;
   animation: load .7s infinite alternate ease-in-out;
   top: 0;
