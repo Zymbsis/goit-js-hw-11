@@ -105,7 +105,6 @@ textarea {
 }
 
 .loader {
-  display: none;
   max-width: 380px;
   margin: 0 auto;
   font-size: 16px;
@@ -153,10 +152,6 @@ textarea {
     width: 15px;
     transform: translateX(-100%)
   }
-}
-
-.is-visible {
-  display: block;
 }
 
 .gallery-container {
@@ -244,10 +239,6 @@ textarea {
 .my-iziToast > .iziToast-body .iziToast-message {
   font-family: 'Montserrat', sans-serif !important;
   letter-spacing: 0.03em !important;
-}
-
-.close-iziToast {
-  display: none !important;
 }
 
 .img-loader {

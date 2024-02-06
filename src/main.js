@@ -9,6 +9,8 @@ const form = document.querySelector('.form');
 const input = document.querySelector('.form-input');
 const galleryContainer = document.querySelector('.gallery-container');
 const loader = document.querySelector('.loader');
+const loaderTextContent =
+  '<p class="loader">Loading images, please wait...</p>';
 const searchParams = new URLSearchParams({
   key: '42207525-2f984868f7881b9b68563ca8c',
   image_type: 'photo',
@@ -33,13 +35,11 @@ function pixabayRequest() {
 }
 
 function processingPixabayRequest() {
-  loader.classList.add('is-visible');
-  galleryContainer.innerHTML = '';
+  galleryContainer.innerHTML = loaderTextContent;
   searchParams.set('q', input.value);
   pixabayRequest()
     .then(images => {
       if (images.hits.length) {
-        loader.classList.remove('is-visible');
         galleryContainer.innerHTML = createMarkup(images.hits);
         gallery.refresh();
       } else {
@@ -84,10 +84,16 @@ function createPopUp(message) {
     ],
     onOpening() {
       galleryContainer.innerHTML = '';
-      loader.classList.remove('is-visible');
-      input.addEventListener('input', () =>
-        document.querySelector('.my-iziToast').classList.add('close-iziToast')
-      );
+
+      input.addEventListener('input', () => {
+        const toast = document.querySelector('.my-iziToast');
+        iziToast.hide(
+          {
+            transitionOut: 'fadeOutRight',
+          },
+          toast
+        );
+      });
     },
   });
 }
