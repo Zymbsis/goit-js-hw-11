@@ -234,8 +234,8 @@ textarea {
 }
 
 .my-iziToast > .iziToast-body .iziToast-texts {
-  padding-top: 15px !important;
-  padding-bottom: 15px !important;
+  padding-top: 5px !important;
+  padding-bottom: 5px !important;
   margin: 0 !important;
   margin-left: 10px !important;
   width: 320px !important;
