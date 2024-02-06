@@ -7,7 +7,6 @@ import closeButton from './img/close_button.svg';
 
 const form = document.querySelector('.form');
 const input = document.querySelector('.form-input');
-const button = document.querySelector('.form-button');
 const galleryContainer = document.querySelector('.gallery-container');
 const loader = document.querySelector('.loader');
 const searchParams = new URLSearchParams({
@@ -20,20 +19,7 @@ const gallery = new SimpleLightbox('.gallery-link');
 
 form.addEventListener('submit', e => {
   e.preventDefault();
-  loader.classList.add('is-visible');
-  galleryContainer.innerHTML = '';
-  searchParams.set('q', input.value);
-  pixabayRequest()
-    .then(images => {
-      if (images.hits.length) {
-        loader.classList.remove('is-visible');
-        galleryContainer.innerHTML = createMarkup(images.hits);
-        gallery.refresh();
-      } else {
-        createPopUp();
-      }
-    })
-    .catch(error => console.log(error));
+  processingPixabayRequest();
   form.reset();
 });
 
@@ -46,6 +32,25 @@ function pixabayRequest() {
   });
 }
 
+function processingPixabayRequest() {
+  loader.classList.add('is-visible');
+  galleryContainer.innerHTML = '';
+  searchParams.set('q', input.value);
+  pixabayRequest()
+    .then(images => {
+      if (images.hits.length) {
+        loader.classList.remove('is-visible');
+        galleryContainer.innerHTML = createMarkup(images.hits);
+        gallery.refresh();
+      } else {
+        createPopUp(
+          'Sorry, there are no images matching your search query. Please, try again!'
+        );
+      }
+    })
+    .catch(error => createPopUp('Oops! Something went wrong. Try again!'));
+}
+
 function createMarkup(arr) {
   return arr
     .map(
@@ -55,15 +60,14 @@ function createMarkup(arr) {
     .join('');
 }
 
-function createPopUp() {
+function createPopUp(message) {
   iziToast.show({
     class: 'my-iziToast',
     backgroundColor: '#EF4040',
     messageColor: '#fff',
     messageSize: 16,
     messageLineHeight: '24',
-    message:
-      'Sorry, there are no images matching your search query. Please, try again!',
+    message: message,
     position: 'topRight',
     iconUrl: octagon,
     progressBarColor: '#B51B1B;',
