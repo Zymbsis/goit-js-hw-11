@@ -18,11 +18,12 @@ const searchParams = new URLSearchParams({
   q: '',
 });
 
-const gallery = new SimpleLightbox('.gallery-link');
+const gallery = new SimpleLightbox('.gallery-link', {
+  className: 'my-spinner',
+});
 
 form.addEventListener('submit', e => {
   e.preventDefault();
-
   if (input.value.trim()) {
     processingPixabayRequest();
   } else {
