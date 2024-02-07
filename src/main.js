@@ -20,7 +20,7 @@ const searchParams = new URLSearchParams({
 
 const gallery = new SimpleLightbox('.gallery-link');
 
-lightboxForGallery.on('shown.simplelightbox', () => {
+gallery.on('shown.simplelightbox', () => {
   const spinner = document.querySelector('.sl-spinner');
   spinner.style.display = 'block';
 });
