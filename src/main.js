@@ -2,8 +2,8 @@ import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
-import octagon from '../img/octagon.svg';
-import closeButton from '../img/close_button.svg';
+import octagon from './img/octagon.svg';
+import closeButton from './img/close_button.svg';
 
 const form = document.querySelector('.form');
 const input = document.querySelector('.form-input');
@@ -17,7 +17,6 @@ const searchParams = new URLSearchParams({
   safesearch: true,
   q: '',
 });
-
 const gallery = new SimpleLightbox('.gallery-link', { alertError: false });
 
 form.addEventListener('submit', e => {
