@@ -246,8 +246,7 @@ textarea {
   letter-spacing: 0.03em !important;
 }
 
-.img-loader,
-.sl-spinner {
+.img-loader {
   position: relative;
   bottom: 50%;
   left: 50%;
@@ -255,12 +254,7 @@ textarea {
   z-index: -100;
 }
 
-.sl-spinner {
-  display: block !important;
-}
-
-.img-loader:before,
-.sl-spinner::before {
+.img-loader:before {
   content: "";
   position: absolute;
   inset: 0;
@@ -273,8 +267,7 @@ textarea {
   animation: spin 1s infinite linear;
 }
 
-.img-loader:after,
-.sl-spinner::after {
+.img-loader:after {
   content: "";
   position: absolute;
   left: 50%;

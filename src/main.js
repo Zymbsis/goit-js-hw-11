@@ -18,12 +18,7 @@ const searchParams = new URLSearchParams({
   q: '',
 });
 
-const gallery = new SimpleLightbox('.gallery-link');
-
-gallery.on('shown.simplelightbox', () => {
-  const spinner = document.querySelector('.sl-spinner');
-  spinner.style.display = 'block';
-});
+const gallery = new SimpleLightbox('.gallery-link', { alertError: false });
 
 form.addEventListener('submit', e => {
   e.preventDefault();
