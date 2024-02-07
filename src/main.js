@@ -22,13 +22,18 @@ const gallery = new SimpleLightbox('.gallery-link');
 
 form.addEventListener('submit', e => {
   e.preventDefault();
-  processingPixabayRequest();
 
+  if (input.value.trim()) {
+    processingPixabayRequest();
+  } else {
+    createPopUp('Search field can not be empty');
+  }
   form.reset();
 });
 
-function pixabayRequest() {
-  searchParams.set('q', input.value);
+function pixabayRequest(str) {
+  galleryContainer.innerHTML = loaderMarkup;
+  searchParams.set('q', str);
   return fetch(`https://pixabay.com/api/?${searchParams}`).then(response => {
     if (!response.ok) {
       throw new Error(response.status);
@@ -38,8 +43,7 @@ function pixabayRequest() {
 }
 
 function processingPixabayRequest() {
-  galleryContainer.innerHTML = loaderMarkup;
-  pixabayRequest()
+  pixabayRequest(input.value)
     .then(images => {
       if (images.hits.length) {
         createMarkup(images.hits);
