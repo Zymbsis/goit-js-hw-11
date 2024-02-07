@@ -254,6 +254,10 @@ textarea {
   z-index: -100;
 }
 
+.img-loader-hidden {
+  display: none;
+}
+
 .img-loader:before {
   content: "";
   position: absolute;

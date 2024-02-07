@@ -47,13 +47,17 @@ function processingPixabayRequest() {
       if (images.hits.length) {
         createMarkup(images.hits);
         gallery.refresh();
+        checkRenderImg();
       } else {
         createPopUp(
           'Sorry, there are no images matching your search query. Please, try again!'
         );
       }
     })
-    .catch(error => createPopUp('Oops! Something went wrong. Try again!'));
+    .catch(error => {
+      createPopUp('Oops! Something went wrong. Try again!');
+      console.log(error);
+    });
 }
 
 function createMarkup(arr) {
@@ -93,15 +97,28 @@ function createPopUp(message) {
       input.addEventListener(
         'input',
         () => {
-          iziToast.hide(
-            {
-              transitionOut: 'fadeOutRight',
-            },
-            toast
-          );
+          try {
+            iziToast.hide(
+              {
+                transitionOut: 'fadeOutRight',
+              },
+              toast
+            );
+          } catch (error) {
+            console.log(error);
+          }
         },
         { once: true }
       );
     },
   });
+}
+
+function checkRenderImg() {
+  const galleryImg = document.querySelectorAll('.gallery-img');
+  galleryImg.forEach(item =>
+    item.addEventListener('load', () => {
+      item.nextSibling.classList.add('img-loader-hidden');
+    })
+  );
 }
