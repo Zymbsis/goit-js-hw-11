@@ -23,6 +23,7 @@ const gallery = new SimpleLightbox('.gallery-link');
 form.addEventListener('submit', e => {
   e.preventDefault();
   processingPixabayRequest();
+
   form.reset();
 });
 
@@ -84,17 +85,20 @@ function createPopUp(message) {
         },
       ],
     ],
-    onOpening() {
+    onOpening: function (instance, toast) {
       galleryContainer.innerHTML = '';
-      input.addEventListener('input', () => {
-        const toast = document.querySelector('.my-iziToast');
-        iziToast.hide(
-          {
-            transitionOut: 'fadeOutRight',
-          },
-          toast
-        );
-      });
+      input.addEventListener(
+        'input',
+        () => {
+          iziToast.hide(
+            {
+              transitionOut: 'fadeOutRight',
+            },
+            toast
+          );
+        },
+        { once: true }
+      );
     },
   });
 }
