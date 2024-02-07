@@ -105,7 +105,7 @@ function createPopUp(message) {
               toast
             );
           } catch (error) {
-            console.log(error);
+            return;
           }
         },
         { once: true }
