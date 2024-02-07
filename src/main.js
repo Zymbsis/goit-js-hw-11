@@ -18,8 +18,11 @@ const searchParams = new URLSearchParams({
   q: '',
 });
 
-const gallery = new SimpleLightbox('.gallery-link', {
-  className: 'my-spinner',
+const gallery = new SimpleLightbox('.gallery-link');
+
+lightboxForGallery.on('shown.simplelightbox', () => {
+  const spinner = document.querySelector('.sl-spinner');
+  spinner.style.display = 'block';
 });
 
 form.addEventListener('submit', e => {
